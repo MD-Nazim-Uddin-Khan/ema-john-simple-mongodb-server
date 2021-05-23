@@ -35,8 +35,35 @@ client.connect(err => {
     })
   })
 
+  // app.get('/products', (req, res) =>{
+  //   productsCollection.find({}).limit(20)
+  //   .toArray((err, document) => {
+  //       res.send(document)
+  //   })
+  // })
+
   app.get('/products', (req, res) =>{
-    productsCollection.find({}).limit(20)
+    const search = req.query.search;
+    productsCollection.find({name: {$regex: search}})
+    // productsCollection.find({name: {$regex: 'laptop'}}).limit(20)
+    .toArray((err, document) => {
+        res.send(document)
+    })
+  })
+
+  app.get('/products', (req, res) =>{
+    const search = req.query.search;
+    productsCollection.find({name: {$regex: search}})
+    // productsCollection.find({name: {$regex: 'laptop'}}).limit(20)
+    .toArray((err, document) => {
+        res.send(document)
+    })
+  })
+
+  app.get('/products', (req, res) =>{
+    const search = req.query.search;
+    productsCollection.find({name: {$regex: search}})
+    // productsCollection.find({name: {$regex: 'laptop'}}).limit(20)
     .toArray((err, document) => {
         res.send(document)
     })
